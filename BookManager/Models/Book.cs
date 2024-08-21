@@ -7,6 +7,7 @@ namespace BookManager.Models
     public class Book
     {
         public int ID { get; set; }
+        public int? Id { get; internal set; }
         [Required]
         public string Title { get; set; }
         [Required]
