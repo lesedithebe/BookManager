@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240821063515_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240828062929_IntialCreate.Designer")]
+    partial class IntialCreateDesigner
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,6 @@ namespace BookManager.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Biography")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -41,7 +40,7 @@ namespace BookManager.Data.Migrations
 
             modelBuilder.Entity("BookManager.Models.Book", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -59,7 +58,7 @@ namespace BookManager.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("PublisherId");
 

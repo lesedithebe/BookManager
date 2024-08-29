@@ -20,5 +20,6 @@ namespace BookManager.Models
         public Publisher Publisher { get; set;}
 
         public ICollection<BookAuthor> BookAuthors { get; set;}
+        public string ISBN { get; internal set; }
     }
 }

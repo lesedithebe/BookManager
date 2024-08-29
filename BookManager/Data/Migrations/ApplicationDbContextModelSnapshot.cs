@@ -24,7 +24,6 @@ namespace BookManager.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Biography")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -38,7 +37,7 @@ namespace BookManager.Data.Migrations
 
             modelBuilder.Entity("BookManager.Models.Book", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -56,7 +55,7 @@ namespace BookManager.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("PublisherId");
 
