@@ -32,7 +32,7 @@ namespace BookManager.Controllers
             {
                 Id = book.Id,
                 Title = book.Title,
-                ISBN = book.ISBN
+                ISBN = book.ISBN,
                 PublicationDate = book.PublicationDate,
                 PublisherName = book.Publisher.Name,
                 AuthorIds = book.BookAuthors.Select(ba => ba.Author.Id).ToArray(),
@@ -57,7 +57,7 @@ namespace BookManager.Controllers
                 .Include(b => b.Publisher)
                 .Include (b => b.BookAuthors)
                 .ThenInclude (ba => ba.Author)
-                .FirstOrDefaultAysnc(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (book == null) 
             {
                 return NotFound();
@@ -67,7 +67,7 @@ namespace BookManager.Controllers
                 Id = book.Id,
                 Title = book.Title,
                 ISBN = book.ISBN,
-                PublicationDate = book?.PublicationDate,
+                PublicationDate = book.PublicationDate,
                 PublisherName = book.Publisher.Name,
                 AuthorIds = book.BookAuthors.Select(ba => ba.Author.Id).ToArray(),
                 Authors = book.BookAuthors.Select(ba => new SelectListItem
