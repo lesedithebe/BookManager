@@ -18,9 +18,6 @@ namespace BookManager.Controllers
             _context = context;
         }
 
-        //public List<SelectListItem> Publishers { get; private set; }
-        //public List<SelectListItem> Authors { get; private set; }
-
         public  async Task<IActionResult> Index()
         {
             var books = await _context.Books
@@ -54,10 +51,10 @@ namespace BookManager.Controllers
                 return NotFound();
             }
             var book = await _context.Books
-                .Include(b => b.Publisher)
-                .Include (b => b.BookAuthors)
-                .ThenInclude (ba => ba.Author)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                           .Include(b => b.Publisher)
+                             .Include (b => b.BookAuthors)
+                             .ThenInclude (ba => ba.Author)
+                             .FirstOrDefaultAsync(m => m.Id == id);
             if (book == null) 
             {
                 return NotFound();
@@ -113,8 +110,7 @@ namespace BookManager.Controllers
                         Console.WriteLine($"Key: {key}, Error{error.ErrorMessage}");
                     }
                 }
-
-                //map the viewModel to the book
+          //map the viewModel to the book
                 var book = new Book
                 {
                     Title = viewModel.Title,
@@ -153,6 +149,7 @@ namespace BookManager.Controllers
                 }).ToList();
             return View(viewModel);
         }
+
         //Edit the book (get)
         public async Task<IActionResult> Edit(int? id)
         {

@@ -18,7 +18,7 @@ namespace BookManager.Controllers
         public async Task<IActionResult> Index()
         {
             var authors = await _context.Authors.ToListAsync();
-            return View();
+            return View(authors);
         }
         //View details of a specific author
         public async Task<IActionResult> Details(int? id)
@@ -45,12 +45,12 @@ namespace BookManager.Controllers
         //Save the author the database
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Author author)
+        public IActionResult  Create(Author author)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(author);
-               await _context.SaveChangesAsync();
+                _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(author);
@@ -101,7 +101,7 @@ namespace BookManager.Controllers
             return View(author);
         }
         //show conformation page to delete an author
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -112,7 +112,7 @@ namespace BookManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var author = await _context.Authors.FindAsync(id);
             if(author != null)
@@ -125,8 +125,8 @@ namespace BookManager.Controllers
 
         private bool AuthorExists(int id) 
         {
-            return _context.Authors.Any(a => a.Id == id);
+            return _context.Authors.Any(e => e.Id == id);
         }
-        // Check the github for changes add edit and delete view
+      
     }
 }
